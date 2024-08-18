@@ -24,8 +24,8 @@ General procedure for me while using the tool:
 
 ## Installing
 
-This module has minimal dependencies (PyYAML) and should install with *pip*
-on a supported python version (3.10 to 3.12).
+This module has no external dependencies and should install with *pip*
+using a supported python version.
 
 ```bash
 pip install password-trainer
