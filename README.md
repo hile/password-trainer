@@ -22,6 +22,17 @@ General procedure for me while using the tool:
 - repeat it for a couple of days until sucecss rate is 100% and then
   change the actual password for the system
 
+## Installing
+
+This module has minimal dependencies (PyYAML) and should install with *pip*
+on a supported python version (3.10 to 3.12).
+
+```bash
+pip install password-trainer
+```
+
+The module has been tested with python 3.10 to 3.12.
+
 ## Generating random passwords
 
 This tool does not generate random passwords. There are multiple secure and
@@ -61,13 +72,6 @@ show the generated password to memorize and copy to a password manager:
 ```bash
 pwgen -s 16 | password-trainer --required=2 --file=- --show-password
 ```
-
-## Installing
-
-This module has minimal dependencies (PyYAML) and should install with *pip*
-on any recent python version.
-
-The module has been tested with python 3.10 to 3.12.
 
 ## Running unit tests and linters
 
