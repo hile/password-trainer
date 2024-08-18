@@ -35,7 +35,7 @@ See *password-trainer --help* for more details.
 
 ## Example commands
 
-bash```
+```bash
 echo foo | password-trainer --required=1 --password-input-file=-
 ```
 
