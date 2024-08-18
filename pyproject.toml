@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "password-trainer"
+version = "1.0.0"
+description = "Train user to enter new password"
+authors = ["Ilkka Tuohela <hile@iki.fi>"]
+homepage = "https://github.com/hile/password-trainer"
+readme = "README.md"
+include = [
+    "LICENSE",
+]
+license = "BSD-3-Clause"
+classifiers = [
+    "Environment :: Console",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Utilities",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+coverage = "^7"
+flake8 = "^7"
+flake8-bugbear = "^24"
+flake8-quotes = "^3"
+mypy = "^1"
+pycodestyle = "^2"
+pyflakes = "^3"
+pytest = "^8"
+tox = "^4"
+ruff = "^0.6"
+
+[tool.poetry.scripts]
+password-trainer = "password_trainer.main:main"
+
+[tool.ruff]
+line-length = 120
+
+[build-system]
+requires = ["poetry-core>=1.9.0"]
+build-backend = "poetry.core.masonry.api"

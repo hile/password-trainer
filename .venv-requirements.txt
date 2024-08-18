@@ -1,0 +1,5 @@
+#
+# Requirements for development virtualenv for password-trainer module
+#
+pip==24.2
+poetry==1.8.3
