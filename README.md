@@ -22,6 +22,12 @@ General procedure for me while using the tool:
 - repeat it for a couple of days until sucecss rate is 100% and then
   change the actual password for the system
 
+## Generating random passwords
+
+This tool does not generate random passwords. There are multiple secure and
+tested password generators and one is likely included in any password manager
+application.
+
 ## Using the password trainer
 
 The tool is installed as command line *password-trainer*. The tool reads
@@ -35,8 +41,25 @@ See *password-trainer --help* for more details.
 
 ## Example commands
 
+Run the command with default arguments. This will ask for the password to train
+on and require it to be written on screen 5 times correctly:
+
 ```bash
-echo foo | password-trainer --required=1 --password-input-file=-
+password-trainer
+```
+
+Show password from *pass* password store for 'Vault admin', pipe it to the
+password-trainer and request user to write it three times correctly:
+
+```bash
+pass Vault/Admin | head -1 | password-trainer --required=3 --file=-
+```
+
+Generate a random password with *pwgen* command, pipe it to the script and
+show the generated password to memorize and copy to a password manager:
+
+```bash
+pwgen -s 16 | password-trainer --required=2 --file=- --show-password
 ```
 
 ## Installing

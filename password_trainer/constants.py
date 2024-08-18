@@ -14,7 +14,7 @@ DEFAULT_ENCODING = 'utf-8'
 DEFAULT_CORRECT_ANSWERS_REQUIRED = 5
 
 # Default value for maximum number of guesses
-DEFAULT_MAXIMUM_ATTEMPTS_COUNT = 30
+DEFAULT_MAXIMUM_ATTEMPTS_COUNT = 10
 
 # Prefix for environment variables for the application
 ENV_PASSWORD_TRAINER_PREFIX = 'PASSWORD_TRAINER_'

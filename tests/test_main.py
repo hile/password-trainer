@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 import pytest
 
-from password_trainer.main import main, PasswordTrainerScript
+from password_trainer.main import main, PasswordTrainerScript, HINT_MESSAGE
 
 from .constants import MESSAGE
 from .helpers import (
@@ -124,11 +124,30 @@ def test_main_run_stdin_password(capsys, monkeypatch, mock_getpass) -> None:
     Test running CLI entrypoint with no command line arguments and password as
     input from stdin
     """
-    monkeypatch.setattr('sys.argv', [COMMAND, '--password-input-file=-'])
-    mock_stdin_password_file(monkeypatch, 'stdinpass')
+    password = 'InvisiblerandomGeneratedPassword'
+    monkeypatch.setattr('sys.argv', [COMMAND, '--file=-'])
+    mock_stdin_password_file(monkeypatch, password)
     with pytest.raises(SystemExit) as exit_status:
         main()
     assert exit_status.value.code == 0
+    captured = capsys.readouterr()
+    assert password not in captured.out.splitlines()
+
+
+def test_main_run_stdin_password_show_password(capsys, monkeypatch, mock_getpass) -> None:
+    """
+    Test running CLI entrypoint with no command line arguments and password as
+    input from stdin and show the generated password in output
+    """
+    password = 'randomGeneratedPassword'
+    expected_line = f'{HINT_MESSAGE}{password}'
+    monkeypatch.setattr('sys.argv', [COMMAND, '--show-password', '--file=-'])
+    mock_stdin_password_file(monkeypatch, password)
+    with pytest.raises(SystemExit) as exit_status:
+        main()
+    assert exit_status.value.code == 0
+    captured = capsys.readouterr()
+    assert expected_line in captured.out.splitlines()
 
 
 def test_main_run_stdin_password_unicode_error(capsys, monkeypatch, mock_getpass) -> None:
@@ -136,7 +155,7 @@ def test_main_run_stdin_password_unicode_error(capsys, monkeypatch, mock_getpass
     Test running CLI entrypoint with no command line arguments and password as
     input from stdin
     """
-    monkeypatch.setattr('sys.argv', [COMMAND, '--max-attempts=1', '--password-input-file=-'])
+    monkeypatch.setattr('sys.argv', [COMMAND, '--max-attempts=1', '--file=-'])
     mock_stdin_password_file_binary(monkeypatch, b'\x9b invalid-unicode\n')
     with pytest.raises(SystemExit) as exit_status:
         main()
